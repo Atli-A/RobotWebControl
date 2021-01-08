@@ -1,6 +1,6 @@
 import os
 
-
+# //functions
 def writeToFile(data, filename):
     f = open(filename, "a")
     f.write(data)

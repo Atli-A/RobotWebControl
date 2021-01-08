@@ -27,4 +27,7 @@ def reboot():
 #
 # testing
 
+
+
 writeToFile("yeet", "test.txt")
+reboot()

@@ -43,6 +43,18 @@ function sendSliderValues() {
 }
 
 
+function sendCommand(inputCommand) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8888", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        command: inputCommand
+    }));
+    return false;
+}
+
+
+
 
 
 //not funtions---------------------------------------
@@ -73,9 +85,21 @@ for (let i = 0; i < sliderSuffixes.length; i++) {
 }
 
 
-
 let sendButton = document.getElementById("sendButton")
 
 sendButton.onclick = function () {
     sendSliderValues();
+}
+
+
+let restartButton = document.getElementById("restartButton")
+
+restartButton.onclick = function () {
+    sendCommand('restart');
+}
+
+let shutdownButton = document.getElementById("shutdownButton")
+
+shutdownButton.onclick = function () {
+    sendCommmand('shutdown');
 }

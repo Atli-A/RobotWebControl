@@ -7,6 +7,9 @@ Usage::
 from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPServer
 import logging
 import simplejson
+import arduinoControl as aC
+
+import sendToArduino as sta
 
 
 # import arduinoControl
@@ -20,17 +23,17 @@ class S(BaseHTTPRequestHandler):
     def do_GET(self):
         self._set_headers()
         #        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-        if self.path == '/test':
-            self._set_headers()
-            content = '''
-<html>
-  <header><title>Dad rules!</title></header>
-  <body>
-    <h1>Dads rule!
-  </body>
-</html>'''
-            self.wfile.write(content.encode())
-            return
+        #         if self.path == '/test':
+        #             self._set_headers()
+        #             content = '''
+        # <html>
+        #   <header><title>Dad rules!</title></header>
+        #   <body>
+        #     <h1>Dads rule!
+        #   </body>
+        # </html>'''
+        #             self.wfile.write(content.encode())
+        #             return
         logging.info("GET request,\nPath: %s\n", str(self.path))
         if self.path == '/':
             possible_name = './index.html'
@@ -55,21 +58,38 @@ class S(BaseHTTPRequestHandler):
 
         data = simplejson.loads(self.data_string)
         logging.info("{}".format(data))
-        return
+
+        print(data)
+
+        if "positions" in data:
+            print('chose a position')
+            sta.sendTo(data)
+        else: #for commands
+            commandNick = ""
+            for i in data:
+                commandNick += data[i]
+
+            if (commandNick == "restart"):
+                aC.reboot()
+            elif (commandNick == "shutdown"):
+                aC.shutdown()
+
+            # ------------------------------------------------Dont know if i should block this out but it seems to work--
+            # class MyRequestHandler(SimpleHTTPRequestHandler):
+            #     def do_GET(self):
+            #         possible_nado_me = self.path.strip("/")+'.html'
+            #         if self.path == '/test':
+
+            #             logging.info("GET request,\nPath: %s\nHeaders:\n%s\n",
+            #                          str(self.path), str(self.headers))
+            #             self._set_response()
+            #             self.wfile.write("GET request for {}".format(
+            #                 self.path).encode('utf-8'))
+            #             return
+            #         return SimpleHTTPRequestHandler.do_GET(self)
 
 
-class MyRequestHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
-        possible_name = self.path.strip("/")+'.html'
-        if self.path == '/test':
 
-            logging.info("GET request,\nPath: %s\nHeaders:\n%s\n",
-                         str(self.path), str(self.headers))
-            self._set_response()
-            self.wfile.write("GET request for {}".format(
-                self.path).encode('utf-8'))
-            return
-        return SimpleHTTPRequestHandler.do_GET(self)
 
 
 def run(server_class=HTTPServer, handler_class=S, port=8888):

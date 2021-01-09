@@ -25,7 +25,7 @@ def shutdown():
 
 
 def reboot():
-    os.system("sudo restart")
+    os.system("sudo reboot")
 
 
 #

@@ -86,11 +86,11 @@ for (let i = 0; i < sliderSuffixes.length; i++) {
 }
 
 
-let sendButton = document.getElementById("sendButton")
+// let sendButton = document.getElementById("sendButton")
 
-sendButton.onclick = function () {
-    sendSliderValues();
-}
+// sendButton.onclick = function () {
+//     sendSliderValues();
+// }
 
 
 let restartButton = document.getElementById("restartButton")

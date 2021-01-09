@@ -80,6 +80,7 @@ for (let i = 0; i < sliderSuffixes.length; i++) {
         console.log(sliderSuffixes[i] + " changed to " + document.getElementById("slide" + String(sliderSuffixes[i])).value)
         sliderValues[i] = document.getElementById("slide" + String(sliderSuffixes[i])).value
         document.getElementById(sliderSuffixes[i] + "value").innerHTML = sliderValues[i];
+        sendSliderValues();
         // writeToFile('positions.json', JSON.stringify(sliderValues))                //old useless code
     });
 }

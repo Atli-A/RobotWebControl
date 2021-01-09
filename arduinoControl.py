@@ -29,5 +29,5 @@ def reboot():
 
 
 
-writeToFile("yeet", "test.txt")
-reboot()
+# writeToFile("yeet", "test.txt")
+# reboot()

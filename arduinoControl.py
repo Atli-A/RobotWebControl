@@ -15,13 +15,13 @@ def overwriteToFile(data, filename):
 
 
 def shutdown(): 
-    os.system("shutdown now")
+    os.system("sudo shutdown now")
 
 
 
 
 def reboot():
-    os.system("restart")
+    os.system("sudo restart")
 
 
 #

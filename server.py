@@ -63,7 +63,7 @@ class S(BaseHTTPRequestHandler):
 
         if "positions" in data:
             print('chose a position')
-            sta.sendTo(data)
+            # sta.sendTo(data)
         else: #for commands
             commandNick = ""
             for i in data:

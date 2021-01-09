@@ -6,6 +6,8 @@ let sliderSuffixes = ["A", "B", "C", "D", "E", "F"]
 
 let sliderValues = [90, 90, 90, 90, 90, 90]
 
+let host = "localhost"
+host = "192.168.4.143"
 // let sliderExample = '< input type = "range" name = "slide' +  + '" id = "slide' +  + '" >'
 
 
@@ -34,7 +36,7 @@ function createInnerHTMLforSliders(lSliderSuffixes) {
 
 function sendSliderValues() {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8888", true);
+    xhr.open("POST", "http://" + host + ":8888", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         positions: sliderValues
@@ -45,7 +47,7 @@ function sendSliderValues() {
 
 function sendCommand(inputCommand) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8888", true);
+    xhr.open("POST", "http://" + host + ":8888", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         command: inputCommand

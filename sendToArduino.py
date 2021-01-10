@@ -23,15 +23,12 @@ publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 #       '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:90,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'
 
 
-def decodeJson(jsonInput) {
+def decodeJson(jsonInput):
     arr = []
-    for i in testjson:
-        arr = i['positions'])
+    for i in jsonInput:
+        arr = i['positions']
     
     return arr
-
-
-}
 
 
 def publish(jsonInput):

@@ -20,7 +20,10 @@ def publish(jsonInput):
     print("recieved")
     global publisher
     publisher.publish( String('{"command":"direct","v1":"L:0,R:0,f:+0.8"}'))
-
+    publisher.publish( String('{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:90,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))
 #data: "{\"command\":\"direct\",\"v1\":\"L:0,R:0,x:-1.47\"}"
 
 # data: '{"command":"direct","v1":"L:0,R:0,x:-1.47"}'
+
+'{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:90,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'
+

@@ -36,7 +36,7 @@ function createInnerHTMLforSliders(lSliderSuffixes) {
 
 function sendSliderValues() {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://" + host + ":8888", true);
+    xhr.open("POST", "http://" + host, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         positions: sliderValues
@@ -47,7 +47,7 @@ function sendSliderValues() {
 
 function sendCommand(inputCommand) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://" + host + ":8888", true);
+    xhr.open("POST", "http://" + host,true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         command: inputCommand

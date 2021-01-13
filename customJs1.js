@@ -7,7 +7,7 @@ let sliderSuffixes = ["A", "B", "C", "D", "E", "F"]
 let sliderValues = [90, 90, 90, 90, 90, 90]
 
 let host = "localhost"
-host = "192.168.4.143"
+host = location.host
 // let sliderExample = '< input type = "range" name = "slide' +  + '" id = "slide' +  + '" >'
 
 

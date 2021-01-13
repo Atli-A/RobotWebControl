@@ -25,8 +25,8 @@ publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
 def decodeJson(jsonInput):
     # arr = json.dumps(jsonInput)
-
-    print(type(arr))
+    arr = jsonInput
+    # print(type(arr))
     res = none
     for i in arr:
         res = i
@@ -39,7 +39,7 @@ def publish(jsonInput):
     print("recieved")
     global publisher
     list = decodeJson(jsonInput)
-
+    print("list = " + list)
     for i in range(len(list)):
         list[i] = int(list[i])
     

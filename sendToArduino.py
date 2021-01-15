@@ -25,9 +25,11 @@ publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
 def decodeJson(jsonInput):
     # arr = json.dumps(jsonInput)
-    arr = jsonInput
+    arr = jsonInput #is implicitly a dict???
     # print(type(arr))
     res = none
+
+    
     for i in arr:
         res = i
     

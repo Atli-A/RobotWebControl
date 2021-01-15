@@ -34,6 +34,8 @@ function createInnerHTMLforSliders(lSliderSuffixes) {
 
 // //send data
 
+
+
 function sendSliderValues() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://" + host, true);
@@ -47,15 +49,13 @@ function sendSliderValues() {
 
 function sendCommand(inputCommand) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://" + host,true);
+    xhr.open("POST", "http://" + host, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         command: inputCommand
     }));
     return false;
 }
-
-
 
 
 
@@ -77,16 +77,19 @@ console.log("test")
 //         document.getElementById(sliderSuffixes[i] + "value").innerHTML = "90";
 //     });
 // }
-for (let i = 0; i < sliderSuffixes.length; i++) {
-    eval("slide" + sliderSuffixes[i]).addEventListener("change", function () {
-        console.log(sliderSuffixes[i] + " changed to " + document.getElementById("slide" + String(sliderSuffixes[i])).value)
-        sliderValues[i] = document.getElementById("slide" + String(sliderSuffixes[i])).value
-        document.getElementById(sliderSuffixes[i] + "value").innerHTML = sliderValues[i];
-        sendSliderValues();
-        // writeToFile('positions.json', JSON.stringify(sliderValues))                //old useless code
-    });
+function readSlides() {
+    for (let i = 0; i < sliderSuffixes.length; i++) {
+        eval("slide" + sliderSuffixes[i]).addEventListener("input", function () {
+            console.log(sliderSuffixes[i] + " changed to " + document.getElementById("slide" + String(sliderSuffixes[i])).value)
+            sliderValues[i] = document.getElementById("slide" + String(sliderSuffixes[i])).value
+            document.getElementById(sliderSuffixes[i] + "value").innerHTML = sliderValues[i];
+            sendSliderValues();
+            // writeToFile('positions.json', JSON.stringify(sliderValues))                //old useless code
+        });
+    }
 }
 
+readSlides();
 
 // let sendButton = document.getElementById("sendButton")
 

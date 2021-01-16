@@ -100,6 +100,7 @@ def run(server_class=HTTPServer, handler_class=S, port=8888):
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
+        exit()
         pass
     httpd.server_close()
     logging.info('Stopping httpd...\n')

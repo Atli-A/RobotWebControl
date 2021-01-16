@@ -34,7 +34,6 @@ def decodeJson(jsonInput):
     for i in range(len(arr)):
        print(i)
        arr[i] = int(arr[i])
-    
     #print(res)
     return arr
 

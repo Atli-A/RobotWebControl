@@ -61,7 +61,9 @@ def publish(jsonInput):
     print(jsonInput)
 
     for i in range(len(jsonInput)):
-        mainstring += chr(i + 97) + ":" + getSign(list[i]-90) + str((list[i]-90 )/10) + ","
+        tmp = chr(i + 97) + ":" + getSign(list[i]-90) + str((list[i]-90 )/10) + ","
+        mainstring += tmp
+        print(tmp)
     mainstring += lastCmdPart
     print("command sent = " + mainstring)
     #this works somehow

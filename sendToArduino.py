@@ -52,10 +52,10 @@ def publish(jsonInput):
     
     mainstring = firstCmdPart
 
-    
+    print(jsonInput)
 
     for i in range(len(jsonInput)):
-        mainstring += chr(i + 97) + ":" + str((list[i]-90 )/10) + ","
+        mainstring += chr(i + 97) + ":" + str((list[i]-90 )/40) + ","
 
     mainstring += lastCmdPart
     print("command sent = " + mainstring)

@@ -60,6 +60,7 @@ def publish(jsonInput):
     # publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
    #this doesnt work i think
     publisher.publish(String(mainstring))
+    publisher.publish('data: "{\"command\":\"action\",\"v1\":\"k\"}"')
     print("published")
     #example publish
    # publisher.publish(String(

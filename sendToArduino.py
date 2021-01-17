@@ -13,6 +13,10 @@ rospy.init_node("customPub")
 
 
 
+zeroes = [90, 90, 90, 90, 90, 90]
+
+
+
 # firstCmdPart = '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "'
 # lastCmdPart = 'pwr:1", "v": 70.44}'
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
@@ -35,7 +39,7 @@ def getSign(numInput):
     if (numInput > 0):
         return "+"
     else:
-        return "-"
+        return ""
 
 def decodeJson(jsonInput):
     #arr = json.loads(jsonInput)
@@ -54,21 +58,39 @@ def decodeJson(jsonInput):
 
 def publish(jsonInput):
     # print("recieved")
+    global zeroes 
     global publisher
     list = decodeJson(jsonInput)
     for i in range(len(list)):
         list[i] = int(list[i])
     
     print("list = " + str(list))
-    
+    print("zeroes = " + str(zeroes))
     mainstring = firstCmdPart
+    
 
-    print("jsonInput = " + printDict(list))
+    listDelta = [0, 0, 0, 0, 0, 0]
+    
     for i in range(len(list)):
-        tmp = chr(i + 97) + ":" + getSign(int(list[i])-90) + str((list[i]-90 )/10) + ","
+        listDelta[i] = list[i] - zeroes[i]
+    
+    print("listDelta = " + str(listDelta))
+
+    zeroes = list
+    #old code form before delta was being calculated
+   # print("jsonInput = " + printDict(list))
+    #for i in range(len(list)):
+    #    tmp = chr(i + 97) + ":" + getSign(int(list[i])-90) + str((list[i]-90 )/10) + ","
+    #    mainstring += tmp
+    #    print(tmp)
+    #    print("letter: " + chr(i + 97))
+   
+    for i in range(len(listDelta)):
+        tmp = chr(i+97) + ":" + getSign(int(listDelta[i])) + str((listDelta[i])/2) + ","
         mainstring += tmp
-        print(tmp)
-        print("letter: " + chr(i + 97))
+        print(str(i) +  " tmp = " + tmp)
+
+   
     mainstring += lastCmdPart
     print("command sent = " + mainstring)
     #this works somehow

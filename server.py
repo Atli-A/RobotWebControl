@@ -99,10 +99,12 @@ def run(server_class=HTTPServer, handler_class=S, port=8888):
     logging.info('Starting httpd...\n')
     try:
         httpd.serve_forever()
-    except KeyboardInterrupt:
-        sys.exit(0)
-        pass
-    httpd.server_close()
+    except:
+    
+        print("yeet")
+        #pass
+        httpd.server_close()
+        exit()
     logging.info('Stopping httpd...\n')
 
 

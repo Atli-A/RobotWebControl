@@ -26,6 +26,12 @@ lastCmdPart = '"}'
 #       '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:90,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'
 
 
+def getSign(numInput):
+    if (numInput > 0):
+        return "+"
+    else:
+        return "-"
+
 def decodeJson(jsonInput):
     #arr = json.loads(jsonInput)
     arr = jsonInput
@@ -55,7 +61,7 @@ def publish(jsonInput):
     
 
     for i in range(len(jsonInput)):
-        mainstring += chr(i + 97) + ":" + str((list[i]-90 )/10) + ","
+        mainstring += chr(i + 97) + ":" + getSign(list[i]-90) + str((list[i]-90 )/10) + ","
 
     mainstring += lastCmdPart
     print("command sent = " + mainstring)

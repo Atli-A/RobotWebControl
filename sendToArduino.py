@@ -13,9 +13,12 @@ rospy.init_node("customPub")
 
 
 
-firstCmdPart = '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "'
-lastCmdPart = 'pwr:1", "v": 70.44}'
+# firstCmdPart = '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "'
+# lastCmdPart = 'pwr:1", "v": 70.44}'
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
+
+firstCmdPart = '{"command":"direct","v1":"L:0,R:0,'
+lastCmdPart = '"}'
 
 
 
@@ -50,11 +53,11 @@ def publish(jsonInput):
     mainstring = firstCmdPart
 
     for i in range(len(jsonInput)):
-        mainstring += chr(i + 97) + ":" + str(list[i]) + ","
+        mainstring += chr(i + 97) + ":" + str((list[i]-90 )/10) + ","
 
     mainstring += lastCmdPart
     #this works somehow
-    publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
+    # publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
    #this doesnt work i think
     publisher.publish(String(mainstring))
     print("published")

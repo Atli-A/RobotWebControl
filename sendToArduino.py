@@ -56,6 +56,7 @@ def publish(jsonInput):
         mainstring += chr(i + 97) + ":" + str((list[i]-90 )/10) + ","
 
     mainstring += lastCmdPart
+    print("command sent = " + mainstring)
     #this works somehow
     # publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
    #this doesnt work i think

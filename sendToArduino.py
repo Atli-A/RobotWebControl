@@ -53,9 +53,11 @@ def publish(jsonInput):
         mainstring += chr(i + 97) + ":" + str(list[i]) + ","
 
     mainstring += lastCmdPart
-    publisher.publish( String('{"command":"direct","v1":"L:0,R:0,f:+0.8"}'))
+    #this works somehow
+    publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
+   #this doesnt work i think
     publisher.publish(String(mainstring))
     print("published")
     #example publish
-    publisher.publish(String(
-        '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:50,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))
+   # publisher.publish(String(
+   #     '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:50,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))

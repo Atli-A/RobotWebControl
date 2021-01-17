@@ -42,15 +42,17 @@ def decodeJson(jsonInput):
 
 
 def publish(jsonInput):
-    print("recieved")
+    # print("recieved")
     global publisher
     list = decodeJson(jsonInput)
-    print("list = " + str(list))
     for i in range(len(list)):
         list[i] = int(list[i])
     
+    print("list = " + str(list))
     
     mainstring = firstCmdPart
+
+    
 
     for i in range(len(jsonInput)):
         mainstring += chr(i + 97) + ":" + str((list[i]-90 )/10) + ","
@@ -62,7 +64,7 @@ def publish(jsonInput):
    #this doesnt work i think
     publisher.publish(String(mainstring))
     publisher.publish('data: "{\"command\":\"action\",\"v1\":\"k\"}"')
-    print("published")
+    # print("published")
     #example publish
    # publisher.publish(String(
    #     '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:50,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))

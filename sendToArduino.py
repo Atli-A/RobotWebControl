@@ -24,7 +24,9 @@ lastCmdPart = '"}'
 
 # Example string:
 #       '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:90,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'
-
+def printDict(dictInput):
+    for i in dictInput:
+        print(i + "   ")
 
 def getSign(numInput):
     if (numInput > 0):
@@ -58,7 +60,7 @@ def publish(jsonInput):
     
     mainstring = firstCmdPart
 
-    print(jsonInput)
+    print(printDict(jsonInput))
 
     for i in range(len(jsonInput)):
         tmp = chr(i + 97) + ":" + getSign(list[i]-90) + str((list[i]-90 )/10) + ","

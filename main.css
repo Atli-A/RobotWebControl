@@ -1,0 +1,17 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.sliders {
+    width: 20%;
+}
+
+.inline {
+    display: inline;
+}
+
+.resultingValue {
+    color: red;
+    margin: 0px;
+}

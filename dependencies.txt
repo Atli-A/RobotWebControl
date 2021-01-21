@@ -1,2 +1,6 @@
-sudo apt-get install python3-catkin-pkg-modules
-sudo apt-get install python3-rospkg-modules
+
+this is just a dumb file that manually shows tis dependencies while I work on the requirements.txt file. 
+
+pip install rospkg
+pip install catkin-pkg
+pip install simplejson

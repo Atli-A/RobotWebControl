@@ -5,7 +5,7 @@ let motorList = ["A", "B", "C", "D", "E", "F"]
 
 let currentMotor = 0
 
-instructions.innerHTML = "Hold space until motor " + motorList[currentMotor] + " stops"
+instructions.innerHTML = "Hold space until motor " + motorList[currentMotor] + " stops or runs into an edge"
 
 
 var r = document.querySelector(':root');

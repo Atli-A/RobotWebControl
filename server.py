@@ -38,7 +38,7 @@ class S(BaseHTTPRequestHandler):
         if self.path == '/':
             possible_name = './index.html'
         else:
-            possible_name = './' + self.path
+            possible_name = '.' + self.path
         logging.info("possible_name: %s" % possible_name)
 
         f = open(possible_name, "r")

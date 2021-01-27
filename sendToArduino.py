@@ -1,4 +1,5 @@
 import json
+import math
 import rospy
 from std_msgs.msg import String
 # tests
@@ -86,9 +87,11 @@ def publish(jsonInput):
     #    print("letter: " + chr(i + 97))
    
     for i in range(len(listDelta)):
-        tmp = chr(i+97) + ":" + getSign(int(listDelta[i])) + str((listDelta[i])/2) + ","
-        mainstring += tmp
-        print(str(i) +  " tmp = " + tmp)
+        if (round(listDelta[i]) != 0):
+            tmp = chr(i+97) + ":" + getSign(int(listDelta[i])) + str((listDelta[i])/2) + ","
+            mainstring += tmp
+
+            print(str(i) +  " tmp = " + tmp)
 
    
     mainstring += lastCmdPart
@@ -96,9 +99,23 @@ def publish(jsonInput):
     #this works somehow
     # publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
    #this doesnt work i think
-    publisher.publish(String(mainstring))
-    publisher.publish('data: "{\"command\":\"action\",\"v1\":\"k\"}"')
+    if (String(mainstring) != firstCmdPart + lastCmdPart):
+        publisher.publish(String(mainstring))
+    # publisher.publish('data: "{\"command\":\"action\",\"v1\":\"k\"}"')
     # print("published")
     #example publish
    # publisher.publish(String(
    #     '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:50,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))
+
+def listenthread():
+    while (true):
+        print("test")
+
+
+
+listent = threading.Thread(target=listenthread, name="listen")
+listent.daemon = True
+listent.start()
+rospy.spin()
+
+print("made to end")

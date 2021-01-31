@@ -4,15 +4,58 @@ Very simple HTTP server in python for logging requests
 Usage::
     ./server.py [<port>]
 """
+
+import time
+print("imported time")
+from std_msgs.msg import String
+print("imported String")
+
 from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPServer
-import logging
+print("imported http server")
 import simplejson
+print("imported simplejson")
+import logging
+print("imported logging")
 import arduinoControl as aC
-
+print("imported arduino control")
 import sendToArduino as sta
+print("imported sTA")
+import threading
+print("imported thread")
+import rospy
+
+print("imported rospy")
+current_pos = []
 
 
-# import arduinoControl
+def status_read(ros_data):
+    global current_pos 
+    print("ros data dor status is " + str(ros_data))
+
+
+
+def run_spin():
+    rospy.spin()
+
+print("finished defining functions")
+rospy.init_node("readStatus")
+
+rospy.Subscriber("/evocar/status", String, status_read, queue_size=5) 
+
+
+rospy_thread = threading.Thread(target=run_spin, name="run_spin")
+rospy_thread.daemon = True
+rospy_thread.start()
+
+
+#rospy.spin()
+
+
+
+
+
+
+# server stuff starts here
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):

@@ -1,5 +1,6 @@
 import json
 import math
+import threading
 import rospy
 from std_msgs.msg import String
 # tests
@@ -10,7 +11,8 @@ from std_msgs.msg import String
 #     print('\n')
 #     i['positions'])
 
-rospy.init_node("customPub")
+
+#rospy.init_node("customPub")
 
 
 
@@ -107,15 +109,20 @@ def publish(jsonInput):
    # publisher.publish(String(
    #     '{"h": 147.43, "r": 233.14, "pwr": true, "pos": "a:50,b:88.19,c:108.62,d:90,e:90.87,f:94.80,pwr:1", "v": 70.44}'))
 
-def listenthread():
-    while (true):
-        print("test")
+#def listenthread():
+    #while (True):
+       # print("test")
+    #    pass
 
 
+#def rosthread():
+    rospy.spin()
 
-listent = threading.Thread(target=listenthread, name="listen")
-listent.daemon = True
-listent.start()
-rospy.spin()
+#ros_thread = threading.Thread(target=rosthread, name="ros")
+
+#listent = threading.Thread(target=listenthread, name="listen")
+#listent.daemon = True
+#listent.start()
+#rospy.spin()
 
 print("made to end")

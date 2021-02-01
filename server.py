@@ -28,9 +28,22 @@ import rospy
 print("imported rospy")
 current_pos = []
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
+has_run = False 
+publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
+
+
+def get_sign(to_sign):
+    if to_sign > 0:
+        return "+"
+    else:
+        return "-"
+
 
 def status_read(ros_data):
     global current_pos
+    global has_run
+    first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
+    last_cmd_part = '"}'
 
     temp_arr = ros_data.data
     temp_arr = json.loads(temp_arr)
@@ -45,9 +58,19 @@ def status_read(ros_data):
         pass
 
 
-    print(current_pos)
-    start_string = ""
+    print("current_pos = " + str(current_pos))
+    start_string = first_cmd_part
     start_string += ""
+
+    for i in range(len(current_pos)):
+        tmp = chr(i + 97) + ":" + str("%+.0f" % (90 - (float(current_pos[i])))) + ","
+        start_string += tmp
+
+    start_string += last_cmd_part
+    if not has_run:
+        print("start_string = " + start_string)
+        publisher.publish(String(start_string))
+        has_run = True
     
 
 
@@ -109,6 +132,7 @@ class S(BaseHTTPRequestHandler):
         self._set_headers()
 
     def do_POST(self):
+        global current_pos
         self._set_headers()
         logging.info("in post method")
         self.data_string = self.rfile.read(int(self.headers['Content-Length']))

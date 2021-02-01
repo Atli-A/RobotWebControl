@@ -4,7 +4,8 @@ Very simple HTTP server in python for logging requests
 Usage::
     ./server.py [<port>]
 """
-
+import json
+print("imported json")
 import time
 print("imported time")
 from std_msgs.msg import String
@@ -26,12 +27,28 @@ import rospy
 
 print("imported rospy")
 current_pos = []
-
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
 
 def status_read(ros_data):
-    global current_pos 
-    print("ros data dor status is " + str(ros_data))
+    global current_pos
 
+    temp_arr = ros_data.data
+    temp_arr = json.loads(temp_arr)
+    current_pos.clear()
+    temp_arr = temp_arr["pos"]
+    temp_arr = dict([(i.split(':')) for i in temp_arr.split(',')])
+    #print(temp_arr)
+    for i in range(6):
+        #print(temp_arr[i])
+        current_pos.append(temp_arr[alphabet[i]])
+
+        pass
+
+
+    print(current_pos)
+    start_string = ""
+    start_string += ""
+    
 
 
 def run_spin():
@@ -106,7 +123,7 @@ class S(BaseHTTPRequestHandler):
 
         if "positions" in data:
             print('chose a position')
-            sta.publish(data)
+            sta.publish(data, current_pos)
         else: #for commands
             commandNick = ""
             for i in data:

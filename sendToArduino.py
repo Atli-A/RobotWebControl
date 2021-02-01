@@ -15,7 +15,7 @@ from std_msgs.msg import String
 #rospy.init_node("customPub")
 
 
-
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
 zeroes = [90, 90, 90, 90, 90, 90]
 
 
@@ -45,8 +45,10 @@ def getSign(numInput):
         return ""
 
 def decodeJson(jsonInput):
+    print(type(jsonInput))
     #arr = json.loads(jsonInput)
     arr = jsonInput
+    print("type of arr is " + str(type(arr)))
     arr = arr["positions"]
    #print("arr = " + str(arr))
 
@@ -59,10 +61,13 @@ def decodeJson(jsonInput):
     return arr
 
 
-def publish(jsonInput):
-    # print("recieved")
+def publish(jsonInput, current_pos):
+    print("recieved")
     global zeroes 
     global publisher
+    global alphabet 
+    for i in current_pos:
+        zeroes[i] = int(float(i))
     list = decodeJson(jsonInput)
     for i in range(len(list)):
         list[i] = int(list[i])
@@ -116,7 +121,7 @@ def publish(jsonInput):
 
 
 #def rosthread():
-    rospy.spin()
+  #  rospy.spin()
 
 #ros_thread = threading.Thread(target=rosthread, name="ros")
 

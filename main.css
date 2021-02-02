@@ -9,6 +9,10 @@ button {
     width: 250px;
     border-radius: 10px;
 }
+
+button:hover {
+    background: #aaa;
+}
 .sliders {
     width: 60%;
     -webkit-appearance: none;
@@ -63,4 +67,4 @@ button {
     padding-bottom: 25px;
     justify-content: space-evenly;
     background-color: #555;
-}1
+}

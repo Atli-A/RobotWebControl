@@ -17,9 +17,9 @@ import simplejson
 print("imported simplejson")
 import logging
 print("imported logging")
-import arduinoControl as aC
+import arduino_control as aC
 print("imported arduino control")
-import sendToArduino as sta
+import send_to_arduino as sta
 print("imported sTA")
 import threading
 print("imported thread")
@@ -29,6 +29,7 @@ print("imported rospy")
 current_pos = []
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
 num_run = 0
+reset = False
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
 
@@ -41,6 +42,7 @@ def get_sign(to_sign):
 
 def status_read(ros_data):
     global current_pos
+    global reset
     global num_run
     first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
     last_cmd_part = '"}'
@@ -58,7 +60,7 @@ def status_read(ros_data):
         pass
 
 
-    print("current_pos = " + str(current_pos))
+    #print("current_pos = " + str(current_pos))
     start_string = first_cmd_part
     start_string += ""
 
@@ -66,12 +68,16 @@ def status_read(ros_data):
         tmp = chr(i + 97) + ":" + str("%+.0f" % (90 - (float(current_pos[i])))) + ","
         start_string += tmp
 
+
+    start_string = start_string[0:-1]
     start_string += last_cmd_part
-    if num_run < 6:
+    if reset or num_run < 6:
+        print("reset or numrun called")
         num_run += 1
-        print("start_string = " + start_string)
+        #print("start_string = " + start_string)
         publisher.publish(String(start_string))
         has_run = True
+        reset = False
     
 
 
@@ -133,6 +139,7 @@ class S(BaseHTTPRequestHandler):
         self._set_headers()
 
     def do_POST(self):
+        global reset
         global current_pos
         self._set_headers()
         logging.info("in post method")
@@ -144,10 +151,10 @@ class S(BaseHTTPRequestHandler):
         data = simplejson.loads(self.data_string)
         logging.info("{}".format(data))
 
-        print(data)
+        #print(data)
 
         if "positions" in data:
-            print('chose a position')
+            #print('chose a position')
             sta.publish(data, current_pos)
         else: #for commands
             commandNick = ""
@@ -158,6 +165,10 @@ class S(BaseHTTPRequestHandler):
                 aC.reboot()
             elif (commandNick == "shutdown"):
                 aC.shutdown()
+            elif (commandNick == "reset"):
+                print("reset definetly called")
+                reset = True 
+                
 
             # ------------------------------------------------Dont know if i should block this out but it seems to work--
             # class MyRequestHandler(SimpleHTTPRequestHandler):

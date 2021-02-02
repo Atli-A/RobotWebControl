@@ -100,7 +100,8 @@ def publish(jsonInput, current_pos):
 
             print(str(i) +  " tmp = " + tmp)
 
-   
+      
+    mainstring = mainstring[0:-1]
     mainstring += lastCmdPart
     print("command sent = " + mainstring)
     #this works somehow

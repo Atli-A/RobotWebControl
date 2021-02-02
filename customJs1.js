@@ -109,3 +109,10 @@ let shutdownButton = document.getElementById("shutdownButton")
 shutdownButton.onclick = function () {
     sendCommmand('shutdown');
 }
+
+let resetButton = document.getElementById("resetMotorsButton")
+
+resetButton.onclick = function () {
+    sendCommand('reset');
+    console.log('reset')
+}

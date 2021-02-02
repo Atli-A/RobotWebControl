@@ -56,7 +56,7 @@ def decodeJson(jsonInput):
    #res = 0
     for i in range(len(arr)):
        print(i)
-       arr[i] = int(arr[i])
+       arr[i] = float(arr[i])
     #print(res)
     return arr
 
@@ -67,10 +67,10 @@ def publish(jsonInput, current_pos):
     global publisher
     global alphabet 
     for i in range(len(current_pos)):
-        zeroes[i] = int(float(current_pos[i]))
+        zeroes[i] = (float(current_pos[i]))
     list = decodeJson(jsonInput)
     for i in range(len(list)):
-        list[i] = int(list[i])
+        list[i] = float(list[i])
     
     print("list = " + str(list))
     print("zeroes = " + str(zeroes))
@@ -95,7 +95,7 @@ def publish(jsonInput, current_pos):
    
     for i in range(len(listDelta)):
         if (round(listDelta[i]) != 0):
-            tmp = chr(i+97) + ":" + getSign(int(listDelta[i])) + str((listDelta[i])) + ","
+            tmp = chr(i+97) + ":" + getSign(listDelta[i]) + str((listDelta[i])) + ","
             mainstring += tmp
 
             print(str(i) +  " tmp = " + tmp)

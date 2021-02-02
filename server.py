@@ -28,7 +28,7 @@ import rospy
 print("imported rospy")
 current_pos = []
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
-has_run = False 
+num_run = 0
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
 
@@ -41,7 +41,7 @@ def get_sign(to_sign):
 
 def status_read(ros_data):
     global current_pos
-    global has_run
+    global num_run
     first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
     last_cmd_part = '"}'
 
@@ -67,7 +67,8 @@ def status_read(ros_data):
         start_string += tmp
 
     start_string += last_cmd_part
-    if not has_run:
+    if num_run < 6:
+        num_run += 1
         print("start_string = " + start_string)
         publisher.publish(String(start_string))
         has_run = True

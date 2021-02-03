@@ -29,13 +29,13 @@ To stop the program run:
 $ ./kill.sh
 ```
 
-To use it go to the ip of your raspberry pi and go to port 8888
+To use it go to the ip of your raspberry pi and go to port 8888 in your browser
 
 ex: 203.0.113.23:8888
 
 ## Advantages
 
-This allows the user to use exect positions on the slider for a simpler and more intuitive ui
+This allows the user to use exect positions on the slider for a simpler and more intuitive UI
 
 This is also more lightweight than the default UI.
 
@@ -43,7 +43,7 @@ It uses Python 3 instead of Python 2
 
 ## Potential improvements
 
-- A nicer looking ui for controlling the robot
+- A nicer looking UI for controlling the robot
 
 - Robot would use absolute positions rather than deltas
 

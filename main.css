@@ -8,11 +8,12 @@ button {
     border: 1px solid black;
     width: 250px;
     border-radius: 10px;
+    outline: none;
+}
+button:hover {
+    background-color: #aaa;
 }
 
-button:hover {
-    background: #aaa;
-}
 .sliders {
     width: 60%;
     -webkit-appearance: none;
@@ -67,4 +68,5 @@ button:hover {
     padding-bottom: 25px;
     justify-content: space-evenly;
     background-color: #555;
+    align-items: stretch;
 }

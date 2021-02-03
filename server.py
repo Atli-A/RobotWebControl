@@ -55,7 +55,7 @@ def status_read(ros_data):
     #print(temp_arr)
     for i in range(6):
         #print(temp_arr[i])
-        current_pos.append(temp_arr[chr(i+97)[i]])
+        current_pos.append(temp_arr[chr(i+97)])
 
         pass
 

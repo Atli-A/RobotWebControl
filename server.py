@@ -112,18 +112,7 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        #        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-        #         if self.path == '/test':
-        #             self._set_headers()
-        #             content = '''
-        # <html>
-        #   <header><title>Dad rules!</title></header>
-        #   <body>
-        #     <h1>Dads rule!
-        #   </body>
-        # </html>'''
-        #             self.wfile.write(content.encode())
-        #             return
+        
         logging.info("GET request,\nPath: %s\n", str(self.path))
         if self.path == '/':
             possible_name = './index.html'
@@ -151,10 +140,7 @@ class S(BaseHTTPRequestHandler):
         data = simplejson.loads(self.data_string)
         logging.info("{}".format(data))
 
-        #print(data)
-
-        if "positions" in data:
-            #print('chose a position')
+        if "positions" in data: # for position setting
             sta.publish(data, current_pos)
         else: #for commands
             commandNick = ""
@@ -170,21 +156,6 @@ class S(BaseHTTPRequestHandler):
                 reset = True 
                 
 
-            # ------------------------------------------------Dont know if i should block this out but it seems to work--
-            # class MyRequestHandler(SimpleHTTPRequestHandler):
-            #     def do_GET(self):
-            #         possible_nado_me = self.path.strip("/")+'.html'
-            #         if self.path == '/test':
-
-            #             logging.info("GET request,\nPath: %s\nHeaders:\n%s\n",
-            #                          str(self.path), str(self.headers))
-            #             self._set_response()
-            #             self.wfile.write("GET request for {}".format(
-            #                 self.path).encode('utf-8'))
-            #             return
-            #         return SimpleHTTPRequestHandler.do_GET(self)
-
-
 
 
 
@@ -196,18 +167,7 @@ def run(server_class=HTTPServer, handler_class=S, port=8888):
     try:
         httpd.serve_forever()
     except:
-    
-        print("yeet")
-        #pass
         httpd.server_close()
         exit()
     logging.info('Stopping httpd...\n')
 
-
-# if __name__ == '__main__':
-#     from sys import argv
-
-#     if len(argv) == 2:
-#         run(port=int(argv[1]))
-#     else:
-#         run()

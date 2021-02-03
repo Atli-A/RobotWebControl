@@ -7,6 +7,8 @@ This is intended as an alternative method of controlling the EvoArm 1.0
 
 It has some advantages but is not as polished or as complete as the original.
 
+This can also be run in parrellel with the original and that is likely the best way to use its
+
 ## Setup and use
 
 To get started, ssh into the raspberry pi zero and run:
@@ -41,7 +43,7 @@ It uses Python 3 instead of Python 2
 
 - A nicer looking ui for controlling the robot
 
-- Minor improvements in how the robot recieves the data
+- Robot would use absolute positions rather than deltas
 
 - The ability to control the speed
 

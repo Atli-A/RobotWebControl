@@ -14,7 +14,7 @@ This can also be run in parrellel with the original and that is likely the best 
 To get started, ssh into the raspberry pi zero and run:
 
 ```sh
-    $ git clone git@github.com:Atli-A/RobotWebControl.git
+    $ git clone https://github.com/Atli-A/RobotWebControl.git
     $ cd RobotWebControl
 ```
 To run it type EITHER of the following:
@@ -36,7 +36,9 @@ ex: xxx.xxx.x.xxx:8888
 ## Advantages
 
 This allows the user to use exect positions on the slider for a simpler and more intuitive ui
+
 This is also more lightweight than the default UI.
+
 It uses Python 3 instead of Python 2 
 
 ## Potential improvements

@@ -5,7 +5,6 @@ import rospy
 from std_msgs.msg import String
 
 
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f']
 zeroes = [90, 90, 90, 90, 90, 90]
 
 
@@ -44,7 +43,6 @@ def publish(jsonInput, current_pos):
     print("recieved")
     global zeroes 
     global publisher
-    global alphabet 
     for i in range(len(current_pos)):
         zeroes[i] = (float(current_pos[i]))
     list = decodeJson(jsonInput)

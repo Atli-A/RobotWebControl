@@ -1,7 +1,0 @@
-
-#for ros (robot operating system)
-rospkg
-#for ros as well
-catkin-pkg 
-#will probably remove this dependency soon.
-simplejson

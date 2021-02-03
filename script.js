@@ -8,10 +8,6 @@ let sliderValues = [90, 90, 90, 90, 90, 90]
 
 let host = "localhost"
 host = location.host
-// let sliderExample = '< input type = "range" name = "slide' +  + '" id = "slide' +  + '" >'
-
-
-//functions-------------------------------------------------------
 
 
 
@@ -68,15 +64,6 @@ slidersArea.innerHTML = createInnerHTMLforSliders(sliderSuffixes);
 
 
 
-console.log("test")
-
-
-// for (let i = 0; i < sliderSuffixes.length; i++) {
-//     eval("slide" + sliderSuffixes[i]).addEventListener("change", function() {
-//         console.log("settig inner html")
-//         document.getElementById(sliderSuffixes[i] + "value").innerHTML = "90";
-//     });
-// }
 function readSlides() {
     for (let i = 0; i < sliderSuffixes.length; i++) {
         eval("slide" + sliderSuffixes[i]).addEventListener("input", function () {
@@ -90,12 +77,6 @@ function readSlides() {
 }
 
 readSlides();
-
-// let sendButton = document.getElementById("sendButton")
-
-// sendButton.onclick = function () {
-//     sendSliderValues();
-// }
 
 
 let restartButton = document.getElementById("restartButton")

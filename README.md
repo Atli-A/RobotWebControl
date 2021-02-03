@@ -31,7 +31,7 @@ $ ./kill.sh
 
 To use it go to the ip of your raspberry pi and go to port 8888
 
-ex: xxx.xxx.x.xxx:8888
+ex: 203.0.113.23:8888
 
 ## Advantages
 

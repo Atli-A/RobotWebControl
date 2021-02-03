@@ -68,15 +68,12 @@ def publish(jsonInput, current_pos):
             tmp = chr(i+97) + ":" + getSign(listDelta[i]) + str((listDelta[i])) + ","
             mainstring += tmp
 
-            print(str(i) +  " tmp = " + tmp)
+            # print(str(i) +  " tmp = " + tmp)
 
       
     mainstring = mainstring[0:-1]
     mainstring += lastCmdPart
     print("command sent = " + mainstring)
-    #this works somehow
-    # publisher.publish( String('{"command":"direct","v1":"L:0,R:0,a:+1"}'))
-   #this doesnt work i think
     if (String(mainstring) != firstCmdPart + lastCmdPart):
         publisher.publish(String(mainstring))
     

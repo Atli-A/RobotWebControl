@@ -1,19 +1,11 @@
 # RobotWebControl
 
 
-This project is unfinished and not entirely working.
-I recommend that you do not install this until it works
+Note: This project is still a work in progress
 
+This is intended as an alternative method of controlling the EvoArm 1.0
 
-The core functionality mostly works however it needs some calibration
-
-
-Just a piece of adviece but currently the only way to easily kill the program is to ssh into it and type:
-
-```sh
-    $ ./kill.sh
-```
-
+It has some advantages but is not as polished or as complete as the original.
 
 ## Setup and use
 
@@ -36,9 +28,16 @@ To stop the program run:
 ```
 
 To use it go to the ip of your raspberry pi and go to port 8888
+
 ex: xxx.xxx.x.xxx:8888
 
-## Possible future improvements
+## Advantages
+
+This allows the user to use exect positions on the slider for a simpler and more intuitive ui
+This is also more lightweight than the default UI.
+It uses Python 3 instead of Python 2 
+
+## Potential improvements
 
 - A nicer looking ui for controlling the robot
 

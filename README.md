@@ -15,7 +15,7 @@ Just a piece of adviece but currently the only way to easily kill the program is
 ```
 
 
-# Setup and use
+## Setup and use
 
 To get started, ssh into the raspberry pi zero and run:
 
@@ -38,3 +38,14 @@ To stop the program run:
 To use it go to the ip of your raspberry pi and go to port 8888
 ex: xxx.xxx.x.xxx:8888
 
+## Possible future improvements
+
+- A nicer looking ui for controlling the robot
+
+- Minor improvements in how the robot recieves the data
+
+- The ability to control the speed
+
+- Allow for custom programs
+
+- Accept camera input

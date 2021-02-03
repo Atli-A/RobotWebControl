@@ -1,18 +1,16 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
-button {
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid black;
-    width: 250px;
-    border-radius: 10px;
-    outline: none;
+
+#header {
+    width: 100%;
+    height: 150px;
+    background-color: #555;
 }
-button:hover {
-    background-color: #aaa;
-}
+
 
 .sliders {
     width: 60%;
@@ -20,7 +18,7 @@ button:hover {
     border-radius: 100px;
     outline: none;
     height: 10px;
-
+    
 }
 
 .sliders::-webkit-slider-thumb {
@@ -39,10 +37,10 @@ button:hover {
 
 
 #slidersArea{
-
+    margin: 15%;
+    
     margin-top: 50px;
     margin-bottom: 0px;
-    margin: 15%;
     border: 1px solid #888;
     border-radius: 10px;
     color: white;
@@ -50,9 +48,11 @@ button:hover {
     padding-top: 25px;
     padding-bottom: 25px;
     background-color: #555;
-
-
+    
+    
 }
+
+/* buttons area starts here  */
 
 #buttonArea {
     display: flex;
@@ -69,4 +69,19 @@ button:hover {
     justify-content: space-evenly;
     background-color: #555;
     align-items: stretch;
+
+}
+
+.commandButtons {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid black;
+    width: 250px;
+    border-radius: 10px;
+    outline: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+button:hover {
+    background-color: #aaa;
 }

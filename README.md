@@ -15,7 +15,7 @@ Just a piece of adviece but currently the only way to easily kill the program is
 ```
 
 
-#Setup and use
+# Setup and use
 
 To get started, ssh into the raspberry pi zero and run:
 

@@ -14,19 +14,19 @@ This can also be run in parrellel with the original and that is likely the best 
 To get started, ssh into the raspberry pi zero and run:
 
 ```sh
-    $ git clone https://github.com/Atli-A/RobotWebControl.git
-    $ cd RobotWebControl
+$ git clone https://github.com/Atli-A/RobotWebControl.git
+$ cd RobotWebControl
 ```
 To run it type EITHER of the following:
 ```sh
-    $ ./main.py
+$ ./main.py
 
-    $ python3 main.py
+$ python3 main.py
 ```
 
 To stop the program run:
 ```sh
-    $ ./kill.sh
+$ ./kill.sh
 ```
 
 To use it go to the ip of your raspberry pi and go to port 8888

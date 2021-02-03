@@ -12,6 +12,23 @@ body {
 }
 
 
+/* sliders start here  */
+#slidersArea{
+    margin: 15%;
+    
+    margin-top: 50px;
+    margin-bottom: 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    color: white;
+    padding: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #555;
+    
+    
+}
+
 .sliders {
     width: 60%;
     -webkit-appearance: none;
@@ -36,21 +53,6 @@ body {
 }
 
 
-#slidersArea{
-    margin: 15%;
-    
-    margin-top: 50px;
-    margin-bottom: 0px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    color: white;
-    padding: 100px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background-color: #555;
-    
-    
-}
 
 /* buttons area starts here  */
 

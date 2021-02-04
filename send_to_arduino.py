@@ -24,7 +24,7 @@ def create_delta_command(deltas):
     start_string = first_cmd_part
     start_string += ""
 
-    for i in range(len(pos)):
+    for i in range(len(deltas)):
         tmp = (chr(i + 97) + ":" + "%+.0f" % float(deltas[i]) + ",")
         start_string += tmp
 

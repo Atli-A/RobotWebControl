@@ -38,6 +38,12 @@ def status_read(ros_data):
     global reset
     global num_run
 
+
+    first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
+    last_cmd_part = '"}'
+
+
+
     temp_arr = ros_data.data
     temp_arr = json.loads(temp_arr)
     current_pos.clear()

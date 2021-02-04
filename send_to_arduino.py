@@ -11,8 +11,8 @@ zeroes = [90, 90, 90, 90, 90, 90]
 
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
-firstCmdPart = '{"command":"direct","v1":"L:0,R:0,'
-lastCmdPart = '"}'
+first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
+last_cmd_part = '"}'
 
 
 
@@ -34,9 +34,9 @@ def create_delta_command(deltas):
     return start_string
 
 
-def printDict(dictInput):
+def print_dict(dict_input):
     result = ""
-    for i in dictInput:
+    for i in dict_input:
         result += str(i) + "   "
 
     return result
@@ -47,9 +47,9 @@ def printDict(dictInput):
 #     else:
 #         return ""
 
-def decodeJson(jsonInput):
-    print(type(jsonInput))
-    arr = jsonInput
+def decode_json(json_input):
+    print(type(json_input))
+    arr = json_input
     print("type of arr is " + str(type(arr)))
     arr = arr["positions"]
     for i in range(len(arr)):
@@ -58,13 +58,13 @@ def decodeJson(jsonInput):
     return arr
 
 
-def publish(jsonInput, current_pos):
+def publish(json_input, current_pos):
     print("recieved")
     global zeroes 
     global publisher
     for i in range(len(current_pos)):
         zeroes[i] = (float(current_pos[i]))
-    decoded_input = decodeJson(jsonInput)
+    decoded_input = decode_json(json_input)
     for i in range(len(decoded_input)):
         decoded_input[i] = float(decoded_input[i])
     
@@ -92,9 +92,9 @@ def publish(jsonInput, current_pos):
 
       
     # main_string = main_string[0:-1]
-    # main_string += lastCmdPart
+    # main_string += last_cmd_part
     print("command sent = " + main_string)
-    if (String(main_string) != firstCmdPart + lastCmdPart):
+    if (String(main_string) != first_cmd_part + last_cmd_part):
         publisher.publish(String(main_string))
     
 print("made to end")

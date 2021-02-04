@@ -94,7 +94,7 @@ shutdownButton.onclick = function () {
 let resetButton = document.getElementById("resetMotorsButton")
 
 resetButton.onclick = function () {
-    // sendCommand('reset');
+    sendCommand('reset');
     console.log('reset')
 
     //reseting positions so that it does not just go right back to where it was

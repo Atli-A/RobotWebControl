@@ -14,18 +14,6 @@ from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPSe
 from std_msgs.msg import String
 import time
 import json
-print("imported json")
-print("imported time")
-print("imported String")
-
-print("imported http server")
-print("imported simplejson")
-print("imported logging")
-print("imported arduino control")
-print("imported sTA")
-print("imported thread")
-
-print("imported rospy")
 current_pos = []
 num_run = 0
 reset = False
@@ -49,12 +37,9 @@ def status_read(ros_data):
     current_pos.clear()
     temp_arr = temp_arr["pos"]
     temp_arr = dict([(i.split(':')) for i in temp_arr.split(',')])
-    # print(temp_arr)
     for i in range(6):
-        # print(temp_arr[i])
         current_pos.append(temp_arr[chr(i+97)])
 
-    # print("current_pos = " + str(current_pos))
     if reset or num_run < 6:
         start_string = first_cmd_part
         start_string += ""
@@ -68,7 +53,6 @@ def status_read(ros_data):
         start_string += last_cmd_part
         print("reset or numrun called")
         num_run += 1
-    # print("start_string = " + start_string)
         publisher.publish(String(start_string))
         has_run = True
         reset = False

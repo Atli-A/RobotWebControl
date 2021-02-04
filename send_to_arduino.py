@@ -41,11 +41,11 @@ def printDict(dictInput):
 
     return result
 
-def getSign(numInput):
-    if (numInput > 0):
-        return "+"
-    else:
-        return ""
+# def getSign(numInput):
+#     if (numInput > 0):
+#         return "+"
+#     else:
+#         return ""
 
 def decodeJson(jsonInput):
     print(type(jsonInput))
@@ -72,20 +72,20 @@ def publish(jsonInput, current_pos):
     print("zeroes = " + str(zeroes))
     
 
-    listDelta = [0, 0, 0, 0, 0, 0]
+    list_delta = [0, 0, 0, 0, 0, 0]
     
     for i in range(len(decoded_input)):
-        listDelta[i] = decoded_input[i] - zeroes[i]
+        list_delta[i] = decoded_input[i] - zeroes[i]
     
 
     zeroes = decoded_input #sets new values for the zeroes ased on current vals to calculate next delta
 
 
-    main_string = create_delta_command(listDelta)
+    main_string = create_delta_command(list_delta)
    
-    # for i in range(len(listDelta)):
-    #     if (round(listDelta[i]) != 0):
-    #         tmp = chr(i+97) + ":" + getSign(listDelta[i]) + str((listDelta[i])) + ","
+    # for i in range(len(list_delta)):
+    #     if (round(list_delta[i]) != 0):
+    #         tmp = chr(i+97) + ":" + getSign(list_delta[i]) + str((list_delta[i])) + ","
     #         main_string += tmp
 
     #         # print(str(i) +  " tmp = " + tmp)

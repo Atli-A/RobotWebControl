@@ -15,6 +15,25 @@ firstCmdPart = '{"command":"direct","v1":"L:0,R:0,'
 lastCmdPart = '"}'
 
 
+
+
+def create_delta_command(deltas):
+    first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
+    last_cmd_part = '"}'
+
+    start_string = first_cmd_part
+    start_string += ""
+
+    for i in range(len(pos)):
+        tmp = (chr(i + 97) + ":" + "%+.0f" % float(deltas[i]) + ",")
+        start_string += tmp
+
+    start_string = start_string[0:-1]
+    start_string += last_cmd_part
+
+    return start_string
+
+
 def printDict(dictInput):
     result = ""
     for i in dictInput:
@@ -45,36 +64,37 @@ def publish(jsonInput, current_pos):
     global publisher
     for i in range(len(current_pos)):
         zeroes[i] = (float(current_pos[i]))
-    list = decodeJson(jsonInput)
-    for i in range(len(list)):
-        list[i] = float(list[i])
+    decoded_input = decodeJson(jsonInput)
+    for i in range(len(decoded_input)):
+        decoded_input[i] = float(decoded_input[i])
     
-    print("list = " + str(list))
+    print("decoded_input = " + str(decoded_input))
     print("zeroes = " + str(zeroes))
-    mainstring = firstCmdPart
     
 
     listDelta = [0, 0, 0, 0, 0, 0]
     
-    for i in range(len(list)):
-        listDelta[i] = list[i] - zeroes[i]
+    for i in range(len(decoded_input)):
+        listDelta[i] = decoded_input[i] - zeroes[i]
     
-    print("listDelta = " + str(listDelta))
 
-    zeroes = list
+    zeroes = decoded_input #sets new values for the zeroes ased on current vals to calculate next delta
+
+
+    main_string = create_delta_command(listDelta)
    
-    for i in range(len(listDelta)):
-        if (round(listDelta[i]) != 0):
-            tmp = chr(i+97) + ":" + getSign(listDelta[i]) + str((listDelta[i])) + ","
-            mainstring += tmp
+    # for i in range(len(listDelta)):
+    #     if (round(listDelta[i]) != 0):
+    #         tmp = chr(i+97) + ":" + getSign(listDelta[i]) + str((listDelta[i])) + ","
+    #         main_string += tmp
 
-            # print(str(i) +  " tmp = " + tmp)
+    #         # print(str(i) +  " tmp = " + tmp)
 
       
-    mainstring = mainstring[0:-1]
-    mainstring += lastCmdPart
-    print("command sent = " + mainstring)
-    if (String(mainstring) != firstCmdPart + lastCmdPart):
-        publisher.publish(String(mainstring))
+    # main_string = main_string[0:-1]
+    # main_string += lastCmdPart
+    print("command sent = " + main_string)
+    if (String(main_string) != firstCmdPart + lastCmdPart):
+        publisher.publish(String(main_string))
     
 print("made to end")

@@ -32,19 +32,11 @@ reset = False
 publisher = rospy.Publisher('/evocar/pub', String, queue_size=5)
 
 
-def get_sign(to_sign):
-    if to_sign > 0:
-        return "+"
-    else:
-        return "-"
-
 
 def status_read(ros_data):
     global current_pos
     global reset
     global num_run
-    first_cmd_part = '{"command":"direct","v1":"L:0,R:0,'
-    last_cmd_part = '"}'
 
     temp_arr = ros_data.data
     temp_arr = json.loads(temp_arr)
@@ -56,22 +48,21 @@ def status_read(ros_data):
         # print(temp_arr[i])
         current_pos.append(temp_arr[chr(i+97)])
 
-        pass
-
-    #print("current_pos = " + str(current_pos))
+    # print("current_pos = " + str(current_pos))
     if reset or num_run < 6:
         start_string = first_cmd_part
         start_string += ""
 
         for i in range(len(current_pos)):
-            tmp = (chr(i + 97) + ":" + str("%+.0f" % (90 - (float(current_pos[i])))) + ",")
+            tmp = (chr(i + 97) + ":" + str("%+.0f" %
+                                           (90 - (float(current_pos[i])))) + ",")
             start_string += tmp
 
         start_string = start_string[0:-1]
         start_string += last_cmd_part
         print("reset or numrun called")
         num_run += 1
-    #print("start_string = " + start_string)
+    # print("start_string = " + start_string)
         publisher.publish(String(start_string))
         has_run = True
         reset = False

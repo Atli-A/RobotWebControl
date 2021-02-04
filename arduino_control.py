@@ -1,8 +1,6 @@
 import os
 
 # # //functions
-
-
 def shutdown():
     os.system("sudo shutdown now")
 

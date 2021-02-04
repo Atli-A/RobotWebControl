@@ -41,12 +41,6 @@ def print_dict(dict_input):
 
     return result
 
-# def getSign(numInput):
-#     if (numInput > 0):
-#         return "+"
-#     else:
-#         return ""
-
 def decode_json(json_input):
     print(type(json_input))
     arr = json_input
@@ -83,16 +77,6 @@ def publish(json_input, current_pos):
 
     main_string = create_delta_command(list_delta)
    
-    # for i in range(len(list_delta)):
-    #     if (round(list_delta[i]) != 0):
-    #         tmp = chr(i+97) + ":" + getSign(list_delta[i]) + str((list_delta[i])) + ","
-    #         main_string += tmp
-
-    #         # print(str(i) +  " tmp = " + tmp)
-
-      
-    # main_string = main_string[0:-1]
-    # main_string += last_cmd_part
     print("command sent = " + main_string)
     if (String(main_string) != first_cmd_part + last_cmd_part):
         publisher.publish(String(main_string))

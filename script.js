@@ -107,6 +107,10 @@ exitButton.onclick = function () {
     let choice = confirm("Are you sure you want to exit? \n You will have to ssh in to restart it.")
     if (choice == true) {
         sendCommand('exit');
+    	setTimeout(function() {
+	    location.reload()
+	}, 1000)
+	    
     }
     //closes the program
     

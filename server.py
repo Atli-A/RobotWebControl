@@ -14,6 +14,7 @@ from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPSe
 from std_msgs.msg import String
 import time
 import json
+import os
 current_pos = []
 num_run = 0
 reset = False
@@ -123,7 +124,8 @@ class S(BaseHTTPRequestHandler):
                 aC.shutdown()
             elif (commandNick == "reset"):
                 reset = True
-
+            elif (commandNick == "exit"):
+                os.system("fuser -k -n tcp 8888")
 
 def run(server_class=HTTPServer, handler_class=S, port=8888):
     #logging.basicConfig(level=logging.INFO)

@@ -42,18 +42,18 @@ def print_dict(dict_input):
     return result
 
 def decode_json(json_input):
-    print(type(json_input))
+    #print(type(json_input))
     arr = json_input
-    print("type of arr is " + str(type(arr)))
+    #print("type of arr is " + str(type(arr)))
     arr = arr["positions"]
     for i in range(len(arr)):
-       print(i)
+       #print(i)
        arr[i] = float(arr[i])
     return arr
 
 
 def publish(json_input, current_pos):
-    print("recieved")
+    #print("recieved")
     global zeroes 
     global publisher
     for i in range(len(current_pos)):

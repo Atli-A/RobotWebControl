@@ -36,13 +36,14 @@ def status_read(ros_data):
     temp_arr = json.loads(temp_arr)
     current_pos.clear()
     temp_arr = temp_arr["pos"]
-    temp_arr = dict([(i.split(':')) for i in temp_arr.split(',')])
-    for i in range(6):
-        current_pos.append(temp_arr[chr(i+97)])
+    if not len(temp_arr) < 2:
+        temp_arr = dict([(i.split(':')) for i in temp_arr.split(',')])
+        for i in range(6):
+            current_pos.append(temp_arr[chr(i+97)])
 
-    if reset or num_run < 6:
+    if reset or num_run == 0:
         start_string = first_cmd_part
-        start_string += ""
+        #start_string += ""
 
         for i in range(len(current_pos)):
             tmp = (chr(i + 97) + ":" + str("%+.0f" %
@@ -54,7 +55,6 @@ def status_read(ros_data):
         print("reset or numrun called")
         num_run += 1
         publisher.publish(String(start_string))
-        has_run = True
         reset = False
 
 
@@ -62,7 +62,6 @@ def run_spin():
     rospy.spin()
 
 
-print("finished defining functions")
 rospy.init_node("readStatus")
 
 rospy.Subscriber("/evocar/status", String, status_read, queue_size=5)
@@ -84,12 +83,12 @@ class S(BaseHTTPRequestHandler):
     def do_GET(self):
         self._set_headers()
 
-        logging.info("GET request,\nPath: %s\n", str(self.path))
+        #logging.info("GET request,\nPath: %s\n", str(self.path))
         if self.path == '/':
             possible_name = './index.html'
         else:
             possible_name = '.' + self.path
-        logging.info("possible_name: %s" % possible_name)
+        #logging.info("possible_name: %s" % possible_name)
 
         f = open(possible_name, "r")
         contents = f.read().encode()
@@ -102,14 +101,14 @@ class S(BaseHTTPRequestHandler):
         global reset
         global current_pos
         self._set_headers()
-        logging.info("in post method")
+        #logging.info("in post method")
         self.data_string = self.rfile.read(int(self.headers['Content-Length']))
 
         self.send_response(200)
         self.end_headers()
 
         data = simplejson.loads(self.data_string)
-        logging.info("{}".format(data))
+        #logging.info("{}".format(data))
 
         if "positions" in data:  # for position setting
             sta.publish(data, current_pos)
@@ -123,18 +122,17 @@ class S(BaseHTTPRequestHandler):
             elif (commandNick == "shutdown"):
                 aC.shutdown()
             elif (commandNick == "reset"):
-                print("reset definetly called")
                 reset = True
 
 
 def run(server_class=HTTPServer, handler_class=S, port=8888):
-    logging.basicConfig(level=logging.INFO)
+    #logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    logging.info('Starting httpd...\n')
+    #logging.info('Starting httpd...\n')
     try:
         httpd.serve_forever()
     except:
         httpd.server_close()
         exit()
-    logging.info('Stopping httpd...\n')
+    #logging.info('Stopping httpd...\n')

@@ -112,7 +112,7 @@ class S(BaseHTTPRequestHandler):
         #logging.info("{}".format(data))
 
         if "positions" in data:  # for position setting
-            sta.publish(data, current_pos)
+            sta.publish(data)
         else:  # for commands
             commandNick = ""
             for i in data:
